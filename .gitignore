@@ -2,3 +2,4 @@ digitdata/
 .ipynb_checkpoints/
 data/captcha-digits
 *__pycache__*
+uploads/
