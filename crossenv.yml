@@ -1,0 +1,11 @@
+name: imsauto
+channels:
+  - anaconda
+  - defaults
+dependencies:
+  - python=3.6.9
+  - numpy
+  - pandas
+  - flask
+  - flask-cors
+  - jupyter
