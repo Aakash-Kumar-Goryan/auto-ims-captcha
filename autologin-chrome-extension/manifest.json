@@ -13,7 +13,8 @@
                 "https://www.imsnsit.org/imsnsit/student.htm"
             ],
             "js": [
-                "contentscript.js"
+                "contentscript.js",
+                "attendance.js"
             ]
         }
     ],
