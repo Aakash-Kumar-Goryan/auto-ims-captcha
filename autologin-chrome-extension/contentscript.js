@@ -8,19 +8,42 @@ const gotoAttendance = async () => {
     let frame = document.getElementById("banner").contentWindow.document;
     frame.getElementsByClassName("tm-bg")[1].getElementsByTagName("a")[0].click()
 
-    console.log("Wait 5 sec")
-    await sleep(5000)
-
     let sidebar = document.getElementById("top").contentWindow.document
-    console.log(sidebar);
+
+    while (sidebar.getElementById("tree") === null) {
+        sidebar = document.getElementById("top").contentWindow.document
+        console.log("Not found", sidebar.getElementById("tree"))
+        await sleep(500)
+    }
+    console.log("Sidebar loaded")
+
+    // console.log("Wait 5 sec")
+    // await sleep(5000)
+
+    // sidebar = document.getElementById("top").contentWindow.document
+    // console.log(sidebar);
     
     console.log("Click My Attendance Report");
     sidebar.getElementById("tree").childNodes[6].childNodes[0].childNodes[2].childNodes[0].childNodes[0].click()
 
-    console.log("Wait 5 sec")
-    await sleep(5000)
+    // console.log("Wait 5 sec")
+    // await sleep(5000)
+    // await skee
+
+    // await sleep(500)
 
     let attendanceWindow = document.getElementById("data").contentWindow.document
+    
+    // while (true) {
+    //     if (attendanceWindow.readyState === 'complete') {
+    //         break
+    //     }
+    // }
+
+    while (attendanceWindow.getElementById("year") === null) {
+        attendanceWindow = document.getElementById("data").contentWindow.document
+        await sleep(500)
+    }
     attendanceWindow.getElementById("year").selectedIndex = 2
     attendanceWindow.getElementById("sem").selectedIndex = 7
     attendanceWindow.getElementsByTagName("input")[7].click()
@@ -35,9 +58,17 @@ window.onload = async () => {
                 "from a content script:" + sender.tab.url :
                 "from the extension");
 
-            gotoAttendance()
-            if (request.greeting == "hello")
+            
+            if (request.msg === 0){
+                gotoAttendance()
                 sendResponse({ farewell: "goodbye" });
+            }
+            else if(request.msg === 1) {
+
+            }
+                
+            
+            
         });
 
     sleep(4000)
