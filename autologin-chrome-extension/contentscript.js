@@ -47,9 +47,41 @@ const gotoAttendance = async () => {
     attendanceWindow.getElementById("year").selectedIndex = 2
     attendanceWindow.getElementById("sem").selectedIndex = 7
     attendanceWindow.getElementsByTagName("input")[7].click()
+    AbsentClasses()
 
 }
-
+const AbsentClasses = () => {
+    console.log("Inside AbsentClasses FUNCTION");
+    let frame = document.getElementById("data").contentWindow.document;
+    let Table = frame.getElementsByTagName("table")[1];
+    let subjectCode = [];
+    for(let i=1;i<Table.rows[1].cells.length;i++) {
+        subjectCode.push(Table.rows[1].cells[i].innerHTML)
+    }
+    let totalSubjects = subjectCode.length;
+    let AbsentList = [];
+    for(let i=0;i<totalSubjects;i++)
+        AbsentList.push([]);
+    for(let i=2;i<Table.rows.length;i++)
+    {
+        if(Table.rows[i].className === "plum_head")
+        {
+            break;
+        }
+        if(Table.rows[i].cells.length == totalSubjects + 1)
+        {
+            for(let j=1;j<=totalSubjects;j++)
+            {
+                if(Table.rows[i].cells[j].innerHTML === "0")
+                {
+                    AbsentList[j-1].push(Table.rows[i].cells[0].innerHTML)
+                }
+            }
+        }
+    }
+    console.log(subjectCode);
+    console.log(AbsentList);
+}
 window.onload = async () => {
 
     chrome.runtime.onMessage.addListener(
@@ -61,6 +93,7 @@ window.onload = async () => {
             
             if (request.msg === 0){
                 gotoAttendance()
+                // AbsentClasses()
                 sendResponse({ farewell: "goodbye" });
             }
             else if(request.msg === 1) {
