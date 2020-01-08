@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
     <style>
         button {
             height: 30px;
@@ -11,8 +12,40 @@
     </style>
 </head>
 <body>
+    <div class="ui three top attached buttons">
+        <div class="ui red button">One</div>
+        <div class="ui blue button">Two</div>
+        <div class="ui green button">Three</div>
+    </div>
+    <table class="ui celled table unstackable">
+        <thead>
+          <tr><th>Name</th>
+          <th>Age</th>
+          <th>Job</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Name">James</td>
+            <td data-label="Age">24</td>
+            <td data-label="Job">Engineer</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Jill</td>
+            <td data-label="Age">26</td>
+            <td data-label="Job">Engineer</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Elyse</td>
+            <td data-label="Age">24</td>
+            <td data-label="Job">Designer</td>
+          </tr>
+        </tbody>
+      </table>
     <!-- <button id="changeColor"></button> -->
-    <button id="attendance">Attendance</button>
+    <!-- <button id="attendance">Attendance</button> -->
+    <div id="attendance" class="ui bottom attached blue button" tabindex="0">Attendance</div>
+    <!-- <button class="fluid ui button">Fits container</button> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
     <script src="popup.js"></script>
 </body>
 </html>
