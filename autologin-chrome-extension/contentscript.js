@@ -1,7 +1,16 @@
-console.log("Content Script")
+console.log("== Content Script | IMS Extension == ");
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+(async ()=> {
+    while (1) {
+        let t = document.getElementById('banner').contentWindow.document.readyState
+        console.log(t);
+        await sleep(200);
+    }
+})();
 
 const gotoAttendance = async () => {
     console.log("Click My Activites");
@@ -50,6 +59,7 @@ const gotoAttendance = async () => {
     AbsentClasses()
 
 }
+
 const AbsentClasses = () => {
     console.log("Inside AbsentClasses FUNCTION");
     let frame = document.getElementById("data").contentWindow.document;
@@ -82,10 +92,49 @@ const AbsentClasses = () => {
     console.log(subjectCode);
     console.log(AbsentList);
 }
+
+const solveCaptchaLogin = async () => {
+    let doc = document.getElementById('banner').contentWindow.document;
+    while(doc.readyState !== "complete"){
+        console.log("Not loaded");
+        await sleep(100)
+    }
+
+    let c = doc.getElementById('captchaimg');
+    // document.getElementById("banner")
+    console.log(c)
+    if (c === null) {
+        console.log("No Captcha found");
+        return;
+    }
+    console.log(c.src);
+
+
+    fetch(`http://localhost:5000/solveCaptcha?link=${c.src}`, {
+        // mode: 'no-cors'
+    })
+        .then((data) => {
+            console.log("converting to json");
+            return data.json();
+        })
+        .then((data) => {
+            console.log("json:", data);
+            let captcha = data.captcha
+            let input = document.getElementById('banner').contentWindow.document.getElementById('cap');
+            input.value = captcha
+            let btn = document.getElementById('banner').contentWindow.document.getElementById('login');
+            console.log(btn);
+
+            btn.click()
+            sleep(5000)
+        })
+}
+
+
 window.onload = async () => {
 
     chrome.runtime.onMessage.addListener(
-        function (request, sender, sendResponse) {
+        async (request, sender, sendResponse) => {
             console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
@@ -97,54 +146,19 @@ window.onload = async () => {
                 sendResponse({ farewell: "goodbye" });
             }
             else if(request.msg === 1) {
-
+                await solveCaptchaLogin()
             }
                 
             
             
         });
 
-    sleep(4000)
+    // await sleep(4000)
     console.log("After load");
-    let c = document.getElementById('banner').contentWindow.document.getElementById('captchaimg');
-    // document.getElementById("banner")
-    console.log(c)
-    if(c === null) {
-        console.log("No Captcha found");
-        return;
-    }
-    console.log(c.src);
+    console.log(document.getElementById('banner').contentWindow.document.getElementById('captchaimg'));
     
-    // let data = await fetch("http://localhost:5000/solveCaptcha", {
-    //     mode: 'no-cors',
-    //     method: "post",
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     contentType: "application/json; charset=utf-8",
-    //     body: JSON.stringify({
-    //         link: c.src
-    //     })
-    // })
-
-    fetch(`http://localhost:5000/solveCaptcha?link=${c.src}`, {
-        // mode: 'no-cors'
-    })
-    .then((data) => {
-        console.log("converting to json");
-        return data.json();
-    })
-    .then((data) => {
-        console.log("json:",data);
-        let captcha = data.captcha
-        let input = document.getElementById('banner').contentWindow.document.getElementById('cap');
-        input.value = captcha
-        let btn = document.getElementById('banner').contentWindow.document.getElementById('login');
-        console.log(btn);
-        
-        btn.click()
-        sleep(5000)
-    })
+    // await solveCaptchaLogin();
+    
 
     // let jsondata = await data.json();
     
