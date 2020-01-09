@@ -39,5 +39,7 @@
         "48": "images/get_started48.png",
         "128": "images/get_started128.png"
     },
+    "options_page": "options.html",
+    "content_security_policy": "script-src 'self' https://code.jquery.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com; object-src 'self'",
     "manifest_version": 2
 }
