@@ -5,6 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src *;"> -->
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -19,8 +21,9 @@
 </style>
 
 <body>
-    <h1>Hello, world!</h1>
+    <!-- <h1>Hello, world!</h1> -->
     <div class="container" style="width: fit-content;">
+        <h2>IMS Extension Configuration</h2>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Roll Num</span>
@@ -37,6 +40,33 @@
             <input type="text" class="form-control" placeholder="Password" aria-label="Username"
                 aria-describedby="basic-addon1" id="password">
             <button type="button" class="btn btn-primary" id="setPassword">Set</button>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox" aria-label="Checkbox for following text input" id="autologin">
+                </div>
+            </div>
+            <!-- <input type="text" class="form-control" aria-label="Text input with checkbox"> -->
+            <div class="form-control">Auto Login ? (Requires setting up rollnumber & passwd above)</div>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input type="checkbox" aria-label="Checkbox for following text input" id="autocaptcha">
+                </div>
+            </div>
+            <!-- <input type="text" class="form-control" aria-label="Text input with checkbox"> -->
+            <div class="form-control">Auto Captcha ?</div>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Default checkbox
+            </label>
         </div>
     </div>
     

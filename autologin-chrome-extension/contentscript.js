@@ -4,13 +4,13 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-(async ()=> {
-    while (1) {
-        let t = document.getElementById('banner').contentWindow.document.readyState
-        console.log(t);
-        await sleep(200);
-    }
-})();
+// (async ()=> {
+//     while (1) {
+//         let t = document.getElementById('banner').contentWindow.document.readyState
+//         console.log(t);
+//         await sleep(200);
+//     }
+// })();
 
 const gotoAttendance = async () => {
     console.log("Click My Activites");
