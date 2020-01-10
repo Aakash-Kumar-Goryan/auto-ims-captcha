@@ -9,6 +9,22 @@
 // };
 
 window.onload = () => {
+
+    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+        console.log(request);
+        let th = "";
+        for(let i=0;i<request.subjectCode.length;i++)
+        {
+            th += "<th>" + request.subjectCode[i] + "</th>";
+        }
+        table = `<thead>
+                    <tr>
+                        ${th}
+                    </tr>
+                </thead>`;
+        console.log(table);
+        document.getElementById("table").innerHTML = table;
+    });
     let attendance = document.getElementById("attendance")
     let login = document.getElementById("login")
 

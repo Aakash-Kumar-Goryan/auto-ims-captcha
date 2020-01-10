@@ -60,9 +60,15 @@ const gotoAttendance = async () => {
 
 }
 
-const AbsentClasses = () => {
+const AbsentClasses = async () => {
     console.log("Inside AbsentClasses FUNCTION");
     let frame = document.getElementById("data").contentWindow.document;
+
+    while (frame.getElementsByTagName("table").length < 3) {
+        frame = document.getElementById("data").contentWindow.document;
+        await sleep(500)
+    }
+    
     let Table = frame.getElementsByTagName("table")[1];
     let subjectCode = [];
     for(let i=1;i<Table.rows[1].cells.length;i++) {
@@ -91,6 +97,7 @@ const AbsentClasses = () => {
     }
     console.log(subjectCode);
     console.log(AbsentList);
+    chrome.runtime.sendMessage({subjectCode: subjectCode,AbsentList: AbsentList });
 }
 
 const solveCaptchaLogin = async () => {
