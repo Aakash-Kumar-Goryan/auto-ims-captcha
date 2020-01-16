@@ -7,6 +7,7 @@
 //         console.log(tab)
 //     });
 // };
+// $('.button').popup({inline: true});
 let SubjectData;
 fetch("./Subject.json").then(function(resp) {
     return resp.json();
@@ -22,12 +23,13 @@ window.onload = () => {
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         console.log(request);
-        let menuContent = `<a id = ${request.subjectCode[0]} class="active item">` + SubjectData[request.subjectCode[0]] + `<div class="ui red label">${request.AbsentList[0].length}</div></a>`;
+        let menuContent = `<a id = ${request.subjectCode[0]} class="active item" data-content="${request.subjectCode[0]}">` + SubjectData[request.subjectCode[0]] + `<div class="ui red label">${request.AbsentList[0].length}</div></a>`;
         for(let i=1;i<request.subjectCode.length;i++)
         {
-            menuContent += `<a id = ${request.subjectCode[i]} class="item">` + SubjectData[request.subjectCode[i]] +`<div class="ui red label">${request.AbsentList[i].length}</div></a>`;
+            menuContent += `<a id = ${request.subjectCode[i]} class="item" data-content="${request.subjectCode[i]}">` + SubjectData[request.subjectCode[i]] +`<div class="ui red label">${request.AbsentList[i].length}</div></a>`;
         }
         document.getElementById("subMenu").innerHTML = menuContent;
+        $('.item').popup();
         document.getElementById("subMenuValue").innerHTML = request.AbsentList[0];
         let buttonList = document.getElementById("subMenu").getElementsByTagName('a');
         for(let i=0;i<buttonList.length;i++)
