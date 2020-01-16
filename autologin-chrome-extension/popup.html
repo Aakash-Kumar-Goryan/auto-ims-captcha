@@ -5,6 +5,11 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
 		integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
 	<style>
+		body {
+			width: 500px;
+			/* height: 500px; */
+		}
+
 		button {
 			height: 30px;
 			/* width: 30px; */
@@ -18,15 +23,23 @@
 		<div class="ui facebook button"><i class="facebook icon"></i>Facebook</div>
 		<div class="ui black button"><i class="github icon"></i>Github</div>
 	</div>
-	<div class="ui top attached tabular menu" id="subMenu">
-		<!-- FILLED THROUGH JAVASCRIPT -->
-	</div>
-	<div class="ui bottom attached segment">
-		<p id="subMenuValue"></p>
+	<div class="ui grid">
+		<div class="eight wide column">
+			<div class="ui large vertical menu" id="subMenu">
+				<!-- FILLED THROUGH JAVASCRIPT -->
+			</div>
+		</div>
+		<div class="eight wide stretched column">
+			<div class="ui segment">
+				<p id="subMenuValue">
+					<!-- FILLED THROUGH JAVASCRIPT -->
+				</p>
+			</div>
+		</div>
 	</div>
 	<div id="login" class="ui bottom attached  button" tabindex="1">Login</div>
 	<div id="attendance" class="ui bottom attached black button" tabindex="2">Attendance</div>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" 
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
 		integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
