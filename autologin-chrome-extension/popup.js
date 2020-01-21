@@ -1,24 +1,9 @@
-// let changeColor = document.getElementById('changeColor');
-
-// changeColor.onclick = function (element) {
-//     console.log("Popup click")
-//     chrome.tabs.getCurrent(function (tab) {
-//         // alert(tab.title);
-//         console.log(tab)
-//     });
-// };
-// $('.button').popup({inline: true});
 let SubjectData;
 fetch("./Subject.json").then(function(resp) {
     return resp.json();
 }).then(function(data) {
     SubjectData = data;
 })
-let changeClass = (id) => {
-    console.log(id);
-    let element = document.getElementById(id);
-    element.classList.toggle("active");
-}
 window.onload = () => {
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
@@ -68,5 +53,11 @@ window.onload = () => {
                 console.log(response.farewell);
             });
         });
+    }
+
+    document.getElementById('github').onclick = () => {
+        console.log("github");
+        let newURL = "https://github.com/abhishekr700/auto-ims-captcha";
+        chrome.tabs.create({ url: newURL });
     }
 }
