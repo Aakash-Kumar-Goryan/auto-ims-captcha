@@ -23,22 +23,20 @@
 		<div class="ui facebook button"><i class="facebook icon"></i>Facebook</div>
 		<div class="ui black button" id="github"><i class="github icon"></i>Github</div>
 	</div>
-	<div class="ui grid">
-		<div class="eight wide column">
-			<div class="ui large vertical menu" id="subMenu">
-				<!-- FILLED THROUGH JAVASCRIPT -->
+	<div class="ui hidden attached icon message" id="loading">
+		<i class="notched circle loading icon"></i>
+		<div class="content">
+			<div class="header">
+				Just one second
 			</div>
-		</div>
-		<div class="eight wide stretched column">
-			<div class="ui segment">
-				<p id="subMenuValue">
-					<!-- FILLED THROUGH JAVASCRIPT -->
-				</p>
-			</div>
+			<p>We're fetching that content for you.</p>
 		</div>
 	</div>
-	<div id="login" class="ui bottom attached  button" tabindex="1">Login</div>
-	<div id="attendance" class="ui bottom attached black button" tabindex="2">Attendance</div>
+	<div class="ui grid" id="container">
+		<div class="sixteen wide column"></div>
+	</div>
+	<!-- <div id="login" class="ui bottom attached button" tabindex="1" >Login</div> -->
+	<div id="attendance" class="ui bottom attached brown button" tabindex="2">Attendance</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
